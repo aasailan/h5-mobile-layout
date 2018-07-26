@@ -1,9 +1,7 @@
 # h5-mobile-layout
 
-## 简介
-移动端手机屏幕适配demo    
-* 该项目是手淘团队针对移动端屏幕的flexible适配方案以及vw适配方案，这两种适配方案的demo项目。   
-* 该项目展示了如何使用less或者scss加上postcss插件的方式来实现这两种适配方案。     
+## h5页面在移动端手机屏幕适配demo    
+* 该项目是根据手淘团队的flexible适配方案以及vw适配方案进行实现的demo项目
 * 关于flexible适配方案的具体详情，请参考：http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html   
 * 关于vw适配方案的具体详情，请参考：https://www.w3cplus.com/css/vw-for-layout.html
 
