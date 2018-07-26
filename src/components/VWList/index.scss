@@ -2,7 +2,7 @@
  * @Author: qiao 
  * @Date: 2018-07-25 09:56:40 
  * @Last Modified by: qiao
- * @Last Modified time: 2018-07-25 20:35:21
+ * @Last Modified time: 2018-07-26 19:32:32
  scss版本vw解决方案
  */
 
@@ -12,10 +12,12 @@
  1、如果需要1px的分割线，可以用 div 加 background-iamge 的方式来做，具体见 .real1px-div 
  2、如果需要1px的边框，则需要用 border-image的方式来做，不然用 background-image 做出边框的效果实在是太勉强了。具体见 .1px-border
  3、background-image 的兼容性比 border-image 的兼容性好。能使用 background-iamge 的地方还是优先考虑使用background-image。
- 4、设计交付给前端的视觉稿尺寸宽度是 750px
+ 4、设计交付给前端的标注稿尺寸宽度是750px
+ 5、
  */ 
 
  // 使用 background-image 实现的 real 1px 分割线
+ // @svg开头的代码段 会被postcss-write-svg编译为svg图片
 @svg 1px-div {
   height: 1px;
   width: 100%;
@@ -43,6 +45,7 @@
 
 .header{
   &__img {
+    // 所有的px单位会被编译为vw单位，1px除外
     width: 750px;
   }
 }
@@ -53,6 +56,7 @@
   height: 1px;
 }
 
+// 物理像素级别 1px 分割线
 .real1px-div{
   height: 1px;
   background-image: svg(1px-div param(--color #000));
