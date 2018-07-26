@@ -1,0 +1,161 @@
+/*
+ * @Author: qiao 
+ * @Date: 2018-07-25 09:56:40 
+ * @Last Modified by: qiao
+ * @Last Modified time: 2018-07-25 20:35:21
+ scss版本vw解决方案
+ */
+
+/*
+ *
+ * NOTE: 
+ 1、如果需要1px的分割线，可以用 div 加 background-iamge 的方式来做，具体见 .real1px-div 
+ 2、如果需要1px的边框，则需要用 border-image的方式来做，不然用 background-image 做出边框的效果实在是太勉强了。具体见 .1px-border
+ 3、background-image 的兼容性比 border-image 的兼容性好。能使用 background-iamge 的地方还是优先考虑使用background-image。
+ 4、设计交付给前端的视觉稿尺寸宽度是 750px
+ */ 
+
+ // 使用 background-image 实现的 real 1px 分割线
+@svg 1px-div {
+  height: 1px;
+  width: 100%;
+  @rect {
+    fill: var(--color, black);
+    width: 100%;
+    height: 50%;
+  }
+}
+
+// 使用 border-iamge 实现的 real 1px 边框
+@svg 1px-border{
+  // 定义svg图片宽高为4px；
+  width: 4px;
+  height: 4px;
+  // 定义一个矩形
+  @rect {
+    fill: transparent;  // content为透明
+    width: 100%;  // 宽度为4px * 100%
+    height: 100%;  // 高度为4px * 100%
+    stroke-width: 25%;  // 边框宽度 4px * 25%(即1px)
+    stroke: var(--color, black);  // 颜色
+  }
+}
+
+.header{
+  &__img {
+    width: 750px;
+  }
+}
+
+// css级别 1px 分割线
+.css1px-div{
+  background: green;
+  height: 1px;
+}
+
+.real1px-div{
+  height: 1px;
+  background-image: svg(1px-div param(--color #000));
+}
+
+// 使用 border-image 实现四周 real 1px 边框
+.border-box{
+  height: 100px;
+  margin: 10px;
+  border: 1px solid;
+  border-image: svg(1px-border param(--color red)) 1 stretch;
+}
+
+// 使用 border-image 实现右边 real 1px 边框
+.right-border-box {
+  height: 100px;
+  margin: 10px;
+  border: 0px;
+  border-right: 1px solid;
+  border-image: svg(1px-border param(--color red)) 1 stretch;
+}
+
+// 使用 border-image 实现底部 real 1px 边框
+.bottom-border-box {
+  height: 100px;
+  margin: 10px;
+  border: 0px;
+  border-bottom: 1px solid;
+  border-image: svg(1px-border param(--color red)) 1 stretch;
+}
+
+.list{
+  padding: 10px;
+  
+  &-item{
+    padding: 14px 15px 14px 0;
+    background: #fff;
+
+    border: 0px;
+    border-bottom: 1px solid;
+    border-image: svg(1px-border param(--color yellow)) 1 stretch;
+
+    &__img{
+      width: 176px;
+      height: 176px;
+      float: left;
+    }
+    &__info{
+      margin-left: 176px;
+      height: 176px;
+      padding-left: 16px;
+      position: relative;
+      
+      &-title {
+        color: #000;
+        // 注意font-size的大小是在750px宽度设计稿下面的大小。
+        font-size: 24px;
+      }
+
+      &-price {
+        padding: 11.25px 0px 15px;
+        
+        span {
+          background: #f32a4c;
+          padding: 2px 6px 2px;
+          color: #fff;
+          font-weight: 700;
+          vertical-align: middle;
+          margin-right: 4px;
+          font-size: 22px;
+        }
+
+        strong {
+          color: #f32a4c;
+          vertical-align: middle;
+          font-size: 32px;
+        }
+
+        small{
+          color: #f32a4c;
+          vertical-align: middle;
+          // @include font-dpr(12);
+          font-size: 24px;
+        }
+      }
+
+      &-hot {
+        color: #ff6a30;
+        font-size: 24px;
+      }
+
+      &-buy {
+        width: 160px;
+        height: 48px;
+        background-color: #f5294c;
+        color: #fff;
+        text-align: center;
+        line-height: 48px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        font-size: 28px;
+      }
+    }
+  }
+}

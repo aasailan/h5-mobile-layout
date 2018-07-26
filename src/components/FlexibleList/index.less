@@ -1,0 +1,105 @@
+/*
+ * @Author: qiao 
+ * @Date: 2018-07-24 15:18:23 
+ * @Last Modified by: qiao
+ * @Last Modified time: 2018-07-24 16:54:04
+ less版本的屏幕适配方案
+ */
+ 
+@baseFontSize: 75; //基于视觉稿横屏尺寸/100 * 10 得出的基准font-size，视觉稿尺寸 通常是750px
+
+body{
+  background-color: #ee0a3b;
+}
+
+// font-size需要根据dpr进行调整
+.font-dpr(@fontsize){
+  font-size: @fontsize / 2 * 1px;
+
+  [data-dpr="2"] & {
+    font-size: @fontsize * 1px;
+  }
+
+  [data-dpr="3"] & { 
+    font-size: @fontsize / 2 * 3px; 
+  }
+}
+
+ .header{
+   &__img {
+     // 因为less无法自定义拥有返回值的函数，所以需要px转rem的地方，只好直接这样写。
+     width: 750 / @baseFontSize * 1rem;
+    //  height: 200 / @baseFontSize * 1rem;
+   }
+ }
+
+ .list{
+   padding: 10 / @baseFontSize * 1rem;
+   &-item{
+    padding: 14 / @baseFontSize * 1rem 15 / @baseFontSize * 1rem 14 / @baseFontSize * 1rem 0;
+    margin-bottom: 1px;
+    background: #fff;
+
+    &__img{
+      width: 176 / @baseFontSize * 1rem;
+      height: 176 / @baseFontSize * 1rem;
+      float: left;
+    }
+    &__info{
+      margin-left: 176 / @baseFontSize * 1rem;
+      height: 176 / @baseFontSize * 1rem;
+      padding-left: 16 / @baseFontSize * 1rem;
+      position: relative;
+
+      &-title {
+        color: #000;
+        .font-dpr(24);
+      }
+
+      &-price {
+        padding: 11.25 / @baseFontSize * 1rem 0 15 / @baseFontSize * 1rem;
+        
+        span {
+          background: #f32a4c;
+          padding: 2 / @baseFontSize * 1rem  6 / @baseFontSize * 1rem 1 / @baseFontSize * 1rem;
+          color: #fff;
+          font-weight: 700;
+          vertical-align: middle;
+          margin-right: 4 / @baseFontSize * 1rem;
+          .font-dpr(22);
+        }
+
+        strong {
+          color: #f32a4c;
+          vertical-align: middle;
+          .font-dpr(32);
+        }
+
+        small{
+          color: #f32a4c;
+          vertical-align: middle;
+          .font-dpr(24);
+        }
+      }
+
+      &-hot {
+        color: #ff6a30;
+        .font-dpr(24);
+      }
+
+      &-buy {
+        width: 160 / @baseFontSize * 1rem;
+        height: 48 / @baseFontSize * 1rem;
+        background-color: #f5294c;
+        color: #fff;
+        // float: right;
+        text-align: center;
+        line-height: 48 / @baseFontSize * 1rem;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        .font-dpr(28);
+      }
+    }
+   }
+ }
