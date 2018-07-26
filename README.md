@@ -16,9 +16,9 @@
 
 ``` bash
 # clone仓库
-git clone 
+git clone https://github.com/aasailan/h5-mobile-layout.git
 
-cd 
+cd h5-mobile-layout
 
 # install dependencies
 npm install
